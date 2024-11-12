@@ -24,7 +24,6 @@ namespace ParkingApp.Classes
 
             while (true)
             {
-                // Ask for the user's favorite fruit
                 var options = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
                         .Title("Navigera och välj ditt val i menyn!")
@@ -38,20 +37,21 @@ namespace ParkingApp.Classes
                 switch (options)
                 {
                     case "Starta parkering":
-                        var regnummerAttStartaParkering = AnsiConsole.Prompt(new TextPrompt<string>("Vad är bilens registreringsnummer?")).ToUpper();
-                        parkingManager.StartParking(regnummerAttStartaParkering);
+                        parkingManager.StartParking();
                         break;
-                    case "Avsluta parkering":
-                        var regnummerAttAvslutaParkering = AnsiConsole.Prompt(new TextPrompt<string>("Vad är bilens registreringsnummer?"));
 
-                        parkingManager.EndParking(regnummerAttAvslutaParkering, 30);
+                    case "Avsluta parkering":
+                        parkingManager.EndParking();
                         break;
+
                     case "Visa historik":
                         ShowHistoryOption();
                         break;
+
                     case "Notifikationer":
                         //Logik
                         break;
+
                     case "Avsluta & spara":
                         LoadProgressBar("Sparar data till databasen...");
                         SaveDataAndExit();
