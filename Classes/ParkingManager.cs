@@ -11,7 +11,7 @@ using System.Text.RegularExpressions;
 namespace ParkingApp.Classes
 {
     public class ParkingManager
-    {//hej
+    {
         public Dictionary<Guid, ParkingEvent<Guid>> activeParkings { get; private set; } = new();
         public Dictionary<Guid, ParkingEvent<Guid>> parkingHistory { get; private set; } = new();
 
