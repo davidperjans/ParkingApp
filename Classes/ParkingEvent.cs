@@ -30,13 +30,6 @@ namespace ParkingApp.Classes
             Cost = 0;
             RegNr = regNr;
         }
-
-        //public void EndParking(DateTime endTime)
-        //{
-        //    EndTime = endTime;
-        //    Cost = CalculateCost();
-        //}
-
         public decimal CalculateCost()
         {
             if (EndTime.HasValue)
