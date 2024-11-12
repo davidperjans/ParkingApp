@@ -98,7 +98,7 @@ namespace ParkingApp.Classes
             // Spara data till JSON via DataJson
             DataJson.SaveToFile(filePath, parkingManager.activeParkings, parkingManager.parkingHistory);
             //Console.Clear();
-            Console.WriteLine("Data sparad. Avslutar programmet...");
+            AnsiConsole.MarkupLine("[bold green]Data sparad. Avslutar programmet...[/]");
         }
         private static void LoadProgressBar(string taskMessage)
         {

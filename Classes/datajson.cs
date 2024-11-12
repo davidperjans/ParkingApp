@@ -20,7 +20,7 @@ namespace ParkingApp.Classes
             {
                 string json = JsonConvert.SerializeObject(data, Formatting.Indented);
                 File.WriteAllText(filePath, json);
-                Console.WriteLine("Data saved successfully.");
+                //Console.WriteLine("Data saved successfully.");
             }
             catch (Exception ex)
             {
@@ -54,7 +54,7 @@ namespace ParkingApp.Classes
                         parkingHistory[parkingEvent.Id] = parkingEvent;
                     }
 
-                    Console.WriteLine("Data loaded successfully.");
+                    //Console.WriteLine("Data loaded successfully.");
                 }
                 else
                 {
