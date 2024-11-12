@@ -14,6 +14,7 @@ En modern och enkel konsolapplikation för att hantera parkeringar! Med Parkerin
 
 - **Notifikationer**: Lägg till funktion som skickar notiser när din parkering snart går ut 📲
 - **Ställa in tid direkt**: Göra det möjligt för användare att ställa in bestämd tid från start av parkeringen ⏰
+- **Platsbaserad parkering**: Lägga till funktion att man kan parkera bland olika zoner där även pris justeras 📍
 - **UI-förbättringar**: Använda mer avancerade konsoleffekter 🎨
 
 ---
