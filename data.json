@@ -1,0 +1,27 @@
+{
+  "activeParkings": [
+    {
+      "Id": "7e1f4f9e-0d8b-4d5c-bd4e-7a02f48b9c84",
+      "StartTime": "2024-11-11T10:00:00",
+      "EndTime": null,
+      "Cost": null,
+      "RegNr": "ABC123"
+    }
+  ],
+  "parkingHistory": [
+    {
+      "Id": "9a35a299-7bc1-497f-b8ea-b6d02d90d479",
+      "StartTime": "2024-11-11T14:00:00",
+      "EndTime": "2024-11-11T15:30:00",
+      "Cost": 45.00,
+      "RegNr": "XYZ456"
+    },
+    {
+      "Id": "1e2d3c47-5b6f-453d-92fb-e6351a5f3749",
+      "StartTime": "2024-11-11T16:00:00",
+      "EndTime": "2024-11-11T17:30:00",
+      "Cost": 60.00,
+      "RegNr": "LMN789"
+    }
+  ]
+}
