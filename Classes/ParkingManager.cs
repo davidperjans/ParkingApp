@@ -37,7 +37,13 @@ namespace ParkingApp.Classes
         }
         public void EndParking()
         {
+            //Printa ut alla aktiva parkeringar först så användaren kan se vilka att avsluta.
+            ShowParkings(activeParkings, "Aktiva parkeringar");
+
+            //Fråga användaren efter regnummer att avsluta
             var regNr = PromptForRegistrationNumber();
+
+            //Kontrollera att det angivna regnr är korrekt.
             var parkingEvent = activeParkings.Values.FirstOrDefault(parkering => parkering.RegNr.Equals(regNr, StringComparison.OrdinalIgnoreCase));
 
             if (parkingEvent != null)
