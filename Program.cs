@@ -18,16 +18,6 @@ namespace ParkingApp
             UserInterface ui = new UserInterface(parkingManager);
 
             ui.StartApplication();
-
-            //decimal hourlyRate = 30;
-
-            //var parkingId = parkingManager.StartParking("ABC123");
-
-            //simulator.AdvanceTime(TimeSpan.FromHours(3));
-
-            //parkingManager.EndParking(parkingId, hourlyRate);
-
-            //parkingManager.ShowHistory();
         }
     }
 }

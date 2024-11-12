@@ -6,15 +6,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace ParkingApp.Classes
 {
     public class ParkingManager
-    {
+    {//hej
         public Dictionary<Guid, ParkingEvent<Guid>> activeParkings { get; private set; } = new();
         public Dictionary<Guid, ParkingEvent<Guid>> parkingHistory { get; private set; } = new();
 
         private ParkingSimulator simulator;
+
+        public int hourlyRate = 30;
 
         public ParkingManager(ParkingSimulator simulator, Dictionary<Guid, ParkingEvent<Guid>> loadedActiveParkings, Dictionary<Guid, ParkingEvent<Guid>> loadedParkingHistory)
         {
@@ -23,18 +26,18 @@ namespace ParkingApp.Classes
             this.parkingHistory = loadedParkingHistory ?? new Dictionary<Guid, ParkingEvent<Guid>>();
         }
 
-        public Guid StartParking(string regNr)
+        public Guid StartParking()
         {
+            var regNr = PromptForRegistrationNumber();
             var id = Guid.NewGuid();
             var parkingEvent = new ParkingEvent<Guid>(id, simulator.GetSimulatedTime(), regNr);
             activeParkings[parkingEvent.Id] = parkingEvent;
-            Console.WriteLine($"Parkeringen {id} startades vid {parkingEvent.StartTime} för bil med regnr: {regNr}");
-            Console.WriteLine($"Aktiva parkeringar: {activeParkings.Count}"); // Kontrollera antalet aktiva parkeringar
+            AnsiConsole.MarkupLine($"[bold yellow]AVISERING:[/] Parkeringen [bold gray]{id}[/] startades vid {parkingEvent.StartTime} för bil med regnr: {regNr}");
             return id;
         }
-
-        public void EndParking(string regNr, decimal hourlyRate)
+        public void EndParking()
         {
+            var regNr = PromptForRegistrationNumber();
             var parkingEvent = activeParkings.Values.FirstOrDefault(parkering => parkering.RegNr.Equals(regNr, StringComparison.OrdinalIgnoreCase));
 
             if (parkingEvent != null)
@@ -57,7 +60,7 @@ namespace ParkingApp.Classes
             }
             else
             {
-                Console.WriteLine($"Ingen aktiv parkering hittades med ID: {regNr}.");
+                AnsiConsole.MarkupLine($"[bold red]Ingen aktiv parkering hittades med ID:[/] {regNr}.");
             }
         }
         public void ShowParkings<T>(Dictionary<Guid, T> parkings, string title, bool isHistory = false) where T : ParkingEvent<Guid>
@@ -126,11 +129,38 @@ namespace ParkingApp.Classes
             Console.Clear();
             UserInterface.printFiggleBanner();
         }
-
-
         public void NotifyParkingEnded(Guid parkingId, decimal cost)
         {
             AnsiConsole.MarkupLine($"[bold yellow]AVISERING[/]: Parkering [bold gray]{parkingId}[/] har avslutats. Totalkostnad: {cost:C}.");
         }
+        public string PromptForRegistrationNumber()
+        {
+            while (true)
+            {
+                var regNr = AnsiConsole.Prompt(new TextPrompt<string>("Ange bilens registreringsnummer [bold yellow](ABC123)[/]: "))?.Trim().ToUpper();
+
+                if (IsValidRegistrationNumber(regNr!))
+                {
+                    return regNr!; // Returnerar det godkända registreringsnumret
+                }
+                else
+                {
+                    AnsiConsole.MarkupLine("[bold red]Ogiltigt registreringsnummer.[/] Ange i formatet [bold yellow]'ABC123'[/] (3 bokstäver följt av 3 siffror).");
+                }
+            }
+        }
+        public static bool IsValidRegistrationNumber(string regNr)
+        {
+            // Kontrollera att regNr inte är null och att det har rätt längd
+            if (string.IsNullOrWhiteSpace(regNr) || regNr.Length != 6)
+            {
+                return false;
+            }
+
+            // Kontrollera mönstret: 3 bokstäver följt av ett mellanslag och 3 siffror
+            string pattern = @"^[A-Z]{3}[0-9]{3}$";
+            return Regex.IsMatch(regNr, pattern, RegexOptions.IgnoreCase);
+        }
+
     }
 }
