@@ -32,6 +32,10 @@ En modern och enkel konsolapplikation för att hantera parkeringar! Med Parkerin
 ### JSON-hantering
 Jag lärde mig att arbeta med JSON för att spara och ladda parkeringar. Med `Newtonsoft.Json` kan appen enkelt spara data i JSON och ladda tillbaka den i samma format för framtida sessioner. **Effektivt och pålitligt!** 📂
 
+### Guid (Globally Unique Identifier)
+Jag lärde mig också att använda `Guid` för att generera unika ID:n för parkeringarna. Det är en riktigt bra och smidig lösning för att skapa unika identifierare, vilket gör att varje parkering får sitt eget unika ID. `Guid` är perfekt när man inte vill oroa sig för kollisioner mellan ID:n, vilket är vanligt vid skapandet av objekt med unika identifierare. 🔑
+
+
 ### Generiska Klasser och Metoder
 Jag använde generiska klasser och metoder för att hantera både pågående och avslutade parkeringar på ett strukturerat och återanvändbart sätt. Genom generiska metoder som `ShowParkings` kan vi skapa en enhetlig visning för olika typer av data:
 
